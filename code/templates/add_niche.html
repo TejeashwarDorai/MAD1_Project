@@ -1,0 +1,21 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %} Add Niche {% endblock title %}
+
+{% block content %}
+<div class="container-fluid col-8 align-center">
+    <h3 class="text-center m-3"> Here, We add Niche of Influencers</h3>
+    <h4 class="text-center m-3"> Fill in the basic details of the cateory you want to add here</h4>
+    <form method="POST" action="/add_niche">
+        <div class="mb-3">
+            <label for="niche_name" class="form-label"> Niche you want to add</label>
+            <input type="text" class="form-control" id="niche_name" name="niche_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label"> Description of the Niche</label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+</div>
+{% endblock content %}

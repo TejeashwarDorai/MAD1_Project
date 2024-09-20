@@ -1,0 +1,95 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Statistics: App Health</h1>
+    <br><br>
+    <h3> User Stats </h3>
+    <div class="row mt-4">
+        <div class="card text-center col-4 m-3 p-3">
+            <div class="card-body">
+                <h5 class="card-title align-center">Total Number of Users: </h5>
+                <p class="card-text align-center" id="total_count">{{total_count}} </p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="card text-center col-4 m-3 p-3">
+            <div class="card-body">
+                <h5 class="card-title align-center">Total Number of Sponsors: </h5>
+                <p class="card-text align-center">{{ sponsors |length }} </p>
+            </div>
+        </div>
+        <div class="card text-center col-4 m-3 p-3">
+            <div class="card-body">
+                <h5 class="card-title align-center">Total Number of Influencers: </h5>
+                <p class="card-text align-center">{{ influencers |length }} </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <h3> Activity Stats </h3>
+    <h4> Overall Metric </h4>
+    <div class="row mt-4">
+        <div class="card text-center col-4 m-3 p-3">
+            <div class="card-body">
+                <h5 class="card-title align-center">Total Number of Campaigns Hosted: </h5>
+                <p class="card-text align-center">{{ campaigns_all |length }} </p>
+            </div>
+        </div>
+        <div class="card text-center col-4 m-3 p-3">
+            <div class="card-body">
+                <h5 class="card-title align-center">Total Number of Ad Requests Serviced: </h5>
+                <p class="card-text align-center">{{ ad_requests_all |length }} </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h4> Ongoing Metric </h4>
+    <div class="row mt-4">
+    <div class="card text-center col-4 m-3 p-3">
+        <div class="card-body">
+            <h5 class="card-title align-center">Total Number of Campaigns Active: </h5>
+            <p class="card-text align-center">{{ campaigns_open |length }} </p>
+        </div>
+    </div>
+    <div class="card text-center col-4 m-3 p-3">
+        <div class="card-body">
+            <h5 class="card-title align-center">Total Number of Ad Requests Active </h5>
+            <p class="card-text align-center">{{ ad_requests_open |length }} </p>
+        </div>
+    </div>
+    <br><br>
+    <hr>
+    <br>
+    <br>
+    <h3> Quantitative metrics </h3>
+    <div class="card text-center col-3 m-3 p-3">
+        <div class="card-body">
+            <h5 class="card-title align-center">Net Worth Of the Application: </h5>
+            <p class="card-text align-center" id="net_worth"> {{net_worth}}</p>
+        </div>
+    </div>
+    <div class="card text-center col-3 m-3 p-3">
+        <div class="card-body">
+            <h5 class="card-title align-center">Success Ratio In terms of Campaigns </h5>
+            <p class="card-text align-center" id="success_ratio_campaigns">{{success_ratio_campaigns}} </p>
+        </div>
+    </div>
+    <div class="card text-center col-3 m-3 p-3">
+        <div class="card-body">
+            <h5 class="card-title align-center">Success Ratio In terms of Ad Requests</h5>
+            <p class="card-text align-center" id="success_ration_ads">{{success_ratio_ads}} </p>
+        </div>
+    </div>
+</div>
+    <br>
+</div>
+<div class="row align-center">
+    <a href={{url_for('go_back')}} class="btn btn-primary col-3 align-center"> Return </a>
+</div>
+{% endblock %}

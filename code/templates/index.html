@@ -1,0 +1,103 @@
+{% extends 'layout_navbar.html' %}
+
+{% block content %}
+    {% if session['user'] %}
+        <h1> Welcome {{ session['user'] }}</h1>
+        <p> Sponsored by HomeCentre</p>
+        {% if session['role']=='influencer' %}
+            <div class="position-absolute top-5 end-0">
+                <h3> Total Earnings: {{ influencer.earnings }}</h3>
+            </div>
+        {% endif %}
+        <br>
+        <h5> Currently Working On Campaigns </h5>
+        <div class="row mt-4">
+            {% for niche in niches %}
+                <div class="row mt-4">
+                    <h6> {{niche.name}} : </h6>
+                    {% for campaign in campaigns %}
+                        {% if campaign.niche == niche.name %}
+                            <div class="card text-center col-4 m-3 p-3">
+                                <div class="card-body">
+                                    <h5 class="card-title align-center">{{campaign.campaign_name}}</h5>
+                                    <p class="card-text align-center">{{campaign.description}}</p>
+                                    {% if session['role']=='admin' %}
+                                        <div class="row m-3 p-3 ">
+                                            <a href={{url_for('view_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> View Ad Requests</a>  
+                                        </div>
+                                        <div class="row m-3 p-3">
+                                            <a href={{url_for('delete_campaign', id=campaign.campaign_id)}} class="btn btn-primary"> Delete Campaign</a>  
+                                        </div>
+                                    {% endif %}
+                                    {% if session['role']=='sponsor' %}
+                                        <div class="card m-3 p-3">
+                                            <h6 class="card-title">Manipulate Ad Requests</h6>
+                                            <div class="row m-3 p-3">
+                                                <a href={{url_for('add_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> Add Ad Request</a>  
+                                            </div>
+                                            <div class="row m-3 p-3">
+                                                <a href={{url_for('view_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> View Ad Requests</a>  
+                                            </div>
+                                            <div class="row m-3 p-3">
+                                                <a href={{url_for('view_completed_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> Approve Completed Ad Requests</a>  
+                                            </div>
+                                        </div>
+                                        <div class="row m-3 p-3">
+                                            <a href={{url_for('edit_campaign', id=campaign.campaign_id)}} class="btn btn-primary"> Edit Campaign</a>  
+                                        </div>
+                                        <div class="row m-3 p-3">
+                                            <a href={{url_for('delete_campaign', id=campaign.campaign_id)}} class="btn btn-primary"> Delete Campaign</a>  
+                                        </div>
+                                        <div class="row m-3 p-3">
+                                            <a href={{url_for('close_campaign', id=campaign.campaign_id)}} class="btn btn-primary"> Close Campaign</a>  
+                                        </div>
+                                    {% endif %}
+                                    {% if session['role']=='influencer' %}
+                                    <div class="row m-3 p-3">
+                                        <a href={{url_for('view_accepted_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> View Accepted Ad Requests</a>  
+                                    </div>
+                                    <div class="row m-3 p-3">
+                                        <a href={{url_for('view_available_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> View Available Ad Requests</a>  
+                                    </div>
+                                    <div class="row m-3 p-3">
+                                        <a href={{url_for('view_completed_ad_request', id=campaign.campaign_id)}} class="btn btn-primary"> View Completed Ad Requests</a>  
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>               
+            {% endfor %}
+        </div>
+        <div class="row mt-4">
+            <br>
+            <br>
+            {% if session['role']=='influencer' %}
+                <h5> Available Campaigns </h5>
+                {% for campaign_acc in campaigns_acc %}
+                <div class="card text-center col-4 m-3 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title align-center">{{campaign_acc.campaign_name}}</h5>
+                        <p class="card-text align-center">{{campaign_acc.description}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% if session['role']=='admin' %}
+            <h5> Inactive Campaigns </h5>
+            {% for campaign_acc in campaigns_inactive %}
+            <div class="card text-center col-4 m-3 p-3">
+                <div class="card-body">
+                    <h5 class="card-title align-center">{{campaign_acc.campaign_name}}</h5>
+                    <p class="card-text align-center">{{campaign_acc.description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    {% else %}
+        <h1> Welcome to the Influencer Engagement and Sponsorship Coordination Platform </h1>
+        <p> Sponsored by Ad Agencies</p>
+    {% endif %}
+{% endblock content %}

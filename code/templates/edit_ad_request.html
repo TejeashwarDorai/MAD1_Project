@@ -1,0 +1,57 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %} Edit Ad-Request {% endblock title %}
+
+{% block content %}
+<div class="container-fluid col-8 align-center">
+    <h1 class="text-center m-3">Edit Ad Request</h1>
+    <form method="POST" action={{"/edit_ad_request/" + ad_request.id | string }}>
+        <div class="mb-3">
+            <label for="ad_name" class="form-label">Ad Request Name</label>
+            <input type="text" class="form-control" id="ad_name" name="ad_name" value={{ ad_request.ad_name }} required readonly>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label"> Description </label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description">{{ ad_request.description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="requirements" class="form-label"> Requirement Elicidation: </label>
+            <textarea class="form-control" id="requirements" name="requirements" rows="3" placeholder="Requirements"> {{ ad_request.requirements }} </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="payment_amount" class="form-label"> Payment Amount: </label>
+            <input type="number" class="form-control" id="payment_amount" name="payment_amount" value={{ ad_request.payment_amount }} required>
+        </div>
+        <div class="mb-3">
+            <label for="influencer_id" class="form-label">Influencer you want on this Ad: </label>
+            <select class="form-select" id="influencer_id" name="influencer_id" required>
+                <option value={{ ad_request.influencer_id }}>{{ ad_request.influencer_id }}</option>
+                {% for influencer in influencers %}
+                    <option value="{{influencer['influencer_id']}}">{{influencer['influencer_name']}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="start_date" class="form_label"> Start date: </label>
+            <input type="date" id="start_date" name="start_date" class="form-control" value={{ ad_request.start_date}} required>
+        </div>
+        <div class="mb-3">
+            <label for="end_date" class="form_label"> End date: </label>
+            <input type="date" id="end_date" name="end_date" class="form-control" value={{ ad_request.end_date}} required>
+        </div>
+        <div class="mb-3">
+            <label for="target_reach" class="form-label">Reach Expected</label>
+            <input type="number" class="form-control" id="target_reach" name="target_reach" value={{ ad_request.target_reach}} required>
+        </div>
+        <div class="row">
+            <div class="col-6 align-center">
+                <button type="submit" class="btn btn-primary mt-3">Edit Ad Request</button>
+            </div>
+            <div class="col-6 align-center">
+                <a href={{url_for('go_back')}} class="btn btn-primary mt-3"> Return </a>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

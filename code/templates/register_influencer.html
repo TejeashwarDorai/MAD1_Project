@@ -1,0 +1,43 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %} Influencer Registration {% endblock title %}
+
+{% block content %}
+<div class="container-fluid col-9 align-center">
+    <h3 class="text-center m-3"> Influencer Registration </h3>
+    <h4 class="text-center m-3"> Fill in your basic details here</h4>
+    <form method="POST" action="/register_influencer">
+        <div class = "mb-3">
+            <label for="influencer_name" class="form-label">Enter the Influencer Name: </label>
+            <input type="text" class="form-control"  id="influencer_name" name="influencer_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="influencer_category" class="form-label">Which is your Line of Business: </label>
+            <select class="form-select" id="influencer_category" name="influencer_category" required>
+                <option value="">Select Category</option>
+                {% for category in category_influencers %}
+                    <option value="{{ category['name'] }}">{{ category['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>   
+        <div class = "mb-3">
+            <label for="niche" class="form-label">What's your Niche: </label>
+            <select class="form-select" id="niche" name="niche" required>
+                <option value="">Select Niche</option>
+                {% for category in niche %}
+                    <option value="{{ category['name'] }}">{{ category['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="reach" class="form-label">What is the reach you're having now: </label>
+            <input type="number" class="form-control" id="reach" name="reach" required>
+        </div>
+        <button type="submit" class="btn btn-primary"> Register </button>
+    </form>
+</div>
+
+{% endblock content %}
+
+ <!-- <label for="niche" class="form-label">What's your niche: </label> -->
+            <!-- <input type="text" class="form-control"  id="niche" name="niche" required> --> 

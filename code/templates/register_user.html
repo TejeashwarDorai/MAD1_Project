@@ -1,0 +1,46 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %} User Registration {% endblock title %}
+
+{% block content %}
+<div class="container-fluid col-8 align-center">
+    <h3> User Registration </h3>
+    <h4> Fill in your basic details here</h4>
+    <form method="POST" action="/register_user">
+        <div class="mb-3">
+            <label for="username" class="form-label"> Create a Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label for="password" class="form-label">Enter Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3 col-6">
+                <label for="confirm_password" class="form-label"> Confirm Password </label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Enter Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="mobile_no" class="form-label">Enter Mobile Number:</label>
+            <input type="text" class="form-control" id="mobile_no" name="mobile_no" required>
+        </div>
+        <div>
+            <label for="address" class="form-label">Enter Address:</label>
+            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Address"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label"> You are registering as a </label>
+            <input type="radio" id="role_sponsor" name="role" value="sponsor">
+            <label for="role_sponsor">Sponsor</label>
+            <input type="radio" id="role_influencer" name="role" value="influencer">
+            <label for="role_influener">Influencer</label>
+        </div>
+        <button type="submit" class="btn btn-primary"> Next </button>
+    </form>
+</div>
+{% endblock content %}

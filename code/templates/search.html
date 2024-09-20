@@ -1,0 +1,29 @@
+{% extends 'layout_navbar.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Search Results</h1>
+    <br><br>
+    <h3>Campaigns found: {{ campaigns|length }}</h3>
+    <h4> List of Campaigns: </h4>
+    {%for campaign in campaigns %}
+    <p>
+        {{campaign.campaign_name }} - {{campaign.description}}
+    </p>
+    {% endfor %}
+    <br><br>
+    <h3> Ad Requests found: {{ ad_requests|length }} </h3>
+    <h4> List of Ad Requests: </h4>
+    {%for ad_request in ad_requests %}
+    <p>
+        {{ad_request.name}}
+    </p>
+    {% endfor %}
+    
+</div>
+<div class="row align-center">
+    <a href={{url_for('go_back')}} class="btn btn-primary col-3 align-center"> Return </a>
+</div>
+{% endblock %}
